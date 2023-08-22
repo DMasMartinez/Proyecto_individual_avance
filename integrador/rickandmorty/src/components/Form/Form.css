@@ -1,0 +1,27 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
+    width: 60vh;
+    padding: 10px;
+    row-gap: 20px;
+    text-align: center;
+    background-color: greenyellow;
+}
+
+.form_email {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.form_password {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.button {
+    
+}

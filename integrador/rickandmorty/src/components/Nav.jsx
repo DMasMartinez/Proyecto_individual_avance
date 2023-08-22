@@ -12,6 +12,9 @@ const Nav = (props) =>{
         <Link to="/about">
             <button>About</button>
         </Link>
+        <Link to="/">
+            <button>Login</button>
+        </Link>
         <SearchBar onSearch={onSearch} />
     </div>
     )

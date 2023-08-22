@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
-import Card from './components/Card.jsx';
-import Cards from './components/Cards.jsx';
+// import Card from './components/Card.jsx';
+// import Cards from './components/Cards.jsx';
 // import SearchBar from './components/SearchBar.jsx';
 // import characters, {Rick} from './data.js';
 import Nav from "./components/Nav.jsx"
@@ -13,12 +13,12 @@ import Deatil from './components/Deatil/Deatil';
 import Home from './components/Home/Home';
 // import Form from './components/Form/Form';
 import { useLocation } from 'react-router-dom';
-import ComponentToConditionalRender from './components/Form/Shouldrender';
-import Login from './components/Form/Login';
+import Aparece from './components/Form/Login';
+import Form from './components/Form/Form';
 
 function App() {
    const [characters,setCharacters]=useState([])
-   const location = useLocation();
+   const { pathname } = useLocation();
    
    // function onSearch(newchar){
    //    setCharacters([...characters,newchar])
@@ -34,7 +34,7 @@ function App() {
       });
    }
    function onClose(iden){
-      const newchars = characters.filter(character => character.id != +iden)
+      const newchars = characters.filter(character => character.id !== +iden)
       setCharacters(newchars)
       console.log("mira")
    }
@@ -42,15 +42,16 @@ function App() {
       <div className='App'>
          
          {/* <SearchBar onSearch={(characterID) => window.alert(characterID)} /> */}
-         <Nav onSearch={onSearch}/>
          
+         {pathname!=="/" && <Nav onSearch={onSearch}/>}
          {/* <Cards characters={characters} onClose={onClose}/> */}
          <Routes>
             {/* <Route path='' element={<Nav onSearch={onSearch}/>}/> */}
+            
             <Route path='/home' element={<Home characters={characters} onClose={onClose}/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/detail/:id' element={<Deatil/>}/>
-            <Route path='/' element={<ComponentToConditionalRender location={location} path={"/"}/>}/>
+            <Route path='/' element={<Aparece/>}/>
          </Routes>
          {/* <Card
             id={Rick.id}

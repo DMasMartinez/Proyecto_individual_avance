@@ -1,7 +1,9 @@
-import Form from "./Form";
+import Form from "./Form"
 
-export default function Login({login}){
+const Aparece = () =>(
     <div>
-        <Form login={login}/>
+        <Form />
     </div>
-}
+)
+
+export default Aparece
