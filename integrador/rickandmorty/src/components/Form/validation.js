@@ -2,7 +2,6 @@
 
 
 
-
 const validate = (input) => {
     const errors = {}
     const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
@@ -15,7 +14,7 @@ const validate = (input) => {
     }
     const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
     const validatePassword = regexPassword.test(input.password)
-    if (!validatePassword){
+    if (!validatePassword && input.password){
         errors["password"] =  "este password no es valido"
     }else {
         errors["email"] = ""

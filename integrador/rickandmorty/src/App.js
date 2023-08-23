@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import Card from './components/Card.jsx';
 // import Cards from './components/Cards.jsx';
 // import SearchBar from './components/SearchBar.jsx';
@@ -7,7 +7,7 @@ import React from 'react';
 import Nav from "./components/Nav.jsx"
 import { useState } from 'react';
 import axios from 'axios';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import About from './components/About/About';
 import Deatil from './components/Deatil/Deatil';
 import Home from './components/Home/Home';
@@ -19,9 +19,20 @@ import Form from './components/Form/Form';
 function App() {
    const [characters,setCharacters]=useState([])
    const { pathname } = useLocation();
-   
+   const [access,setAccess] = useState(false)
+   const USER = "danielmasmar@gmail.com"
+   const PASSWORD = 'DanielMas'   
+   const navigate = useNavigate()
    // function onSearch(newchar){
    //    setCharacters([...characters,newchar])
+   function login(user){
+      if (user.email === USER && user.password ===PASSWORD){
+         setAccess(true);
+         navigate("/home")
+      }else {
+         alert ("user or password has been writting incorrect")
+      }
+   }
 
    // }
    function onSearch(id) {
@@ -38,6 +49,9 @@ function App() {
       setCharacters(newchars)
       console.log("mira")
    }
+   useEffect(()=>{
+      !access && navigate("/")
+   },[access])
    return (
       <div className='App'>
          
@@ -51,7 +65,7 @@ function App() {
             <Route path='/home' element={<Home characters={characters} onClose={onClose}/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/detail/:id' element={<Deatil/>}/>
-            <Route path='/' element={<Aparece/>}/>
+            <Route path='/' element={<Aparece login={login}/>}/>
          </Routes>
          {/* <Card
             id={Rick.id}

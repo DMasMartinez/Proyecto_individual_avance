@@ -3,7 +3,7 @@ import validate from "./validation";
 import { useState } from 'react'
 import './Form.css'
 import logimg from './rymorty.jpg'
-export default function Form(){
+export default function Form({login}){
   
     const [userData, setUserData] = useState({
         email : "",
@@ -20,10 +20,14 @@ export default function Form(){
         setErrors(validate({...userData,
             [inputname]:event.target.value}))
     }
+    const handlersubmit = (event)=>{
+        event.preventDefault()
+        login(userData)
+    }
     
     return (<> 
             
-            <form>
+            <form onSubmit={handlersubmit}>
                 <img src={logimg} alt='login'/>
                 <div className="form_email">
                     <label>Email</label>
